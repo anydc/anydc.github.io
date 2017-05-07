@@ -151,6 +151,67 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Haproxy代理ssl两种方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/05/Haproxy代理ssl两种方式/">Haproxy代理ssl两种方式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/05/05/Haproxy代理ssl两种方式/" class="archive-article-date">
+  	<time datetime="2017-05-05T13:56:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1、</strong>haproxy 本身提供ssl 证书，后面的web 服务器走正常的http<br><strong>2、</strong>haproxy 本身只提供代理，后面的web服务器https</p>
+<p><strong>第一种方式</strong><br>需要编译haproxy 支持ssl，编译参数：<br>    make TARGET=linux26 USE_OPENSSL=1 ADDLIB=-lz<br>    ldd haproxy | grep ssl<br>    libssl.so.10 =&gt; /usr/lib64/libssl.so.10 (0x00007fb0485e5000)<br>配置参数：<br>frontend https_frontend<br>  bind <em>:443 ssl crt /etc/ssl/certs/servername.pem<br>  mode http<br>  option httpclose<br>  option forwardfor<br>  reqadd X-Forwarded-Proto:\ https<br>  default_backend web_server<br>backend web_server<br>  mode http<br>  balance roundrobin<br>  cookie SERVERID insert indirect nocache<br>  server s1 192.168.250.47:80 check cookie s1<br>  server s2 192.168.250.49:80 check cookie s2<br> 注意：这里的pem 文件是下面两个文件合并而成：<br>  cat servername.crt servername.key |tee servername.pem<br><strong>第二种方式配置</strong><br>不需要重新编译支持ssl，简单方便。需要后面的web服务器配置好ssl 即可。<br>frontend https_frontend<br>  bind </em>:443<br>  mode tcp<br>  default_backend web_server<br>backend web_server<br>  mode tcp<br>  balance roundrobin<br>  stick-table type ip size 200k expire 30m<br>  stick on src<br>  server s1 192.168.250.47:443<br>  server s2 192.168.250.49:443</p>
+<p><strong>启动，查看进程</strong><br>haproxy]# /usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/haproxy.cfg<br>[root@node3 app]# ps -ef |grep haproxy |grep -v grep<br>root      6950     1  0 19:35 ?        00:00:00 /usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/haproxy.cfg</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Haproxy</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/05/05/Haproxy代理ssl两种方式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-开博第一篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -299,6 +360,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Haproxy</a>
               </li>
             
             <div class="clearfix"></div>
