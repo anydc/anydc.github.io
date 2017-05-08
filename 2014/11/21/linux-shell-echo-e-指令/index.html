@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="//anydc.com">
   <title>linux shell echo -e 指令 | 随心所欲</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="echo -e 处理特殊字符 若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：\a 发出警告声；\b 删除前一个字符；\c 最后不加上换行符号；\f 换行但光标仍旧停留在原来的位置；\n 换行且光标移至行首；\r 光标移至行首，但不换行；\t 插入tab；\v 与\f相同；\ 插入\字符；\nnn 插入nnn（八进制）所代表的ASCII字符； $echo -e “a\bdddd">
+  <meta name="description" content="echo -e 处理特殊字符">
 <meta name="keywords" content="linux,shell">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux shell echo -e 指令">
 <meta property="og:url" content="//anydc.com/2014/11/21/linux-shell-echo-e-指令/index.html">
 <meta property="og:site_name" content="随心所欲">
-<meta property="og:description" content="echo -e 处理特殊字符 若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：\a 发出警告声；\b 删除前一个字符；\c 最后不加上换行符号；\f 换行但光标仍旧停留在原来的位置；\n 换行且光标移至行首；\r 光标移至行首，但不换行；\t 插入tab；\v 与\f相同；\ 插入\字符；\nnn 插入nnn（八进制）所代表的ASCII字符； $echo -e “a\bdddd">
-<meta property="og:updated_time" content="2017-05-08T03:33:55.921Z">
+<meta property="og:description" content="echo -e 处理特殊字符">
+<meta property="og:updated_time" content="2017-05-08T07:52:25.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux shell echo -e 指令">
-<meta name="twitter:description" content="echo -e 处理特殊字符 若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：\a 发出警告声；\b 删除前一个字符；\c 最后不加上换行符号；\f 换行但光标仍旧停留在原来的位置；\n 换行且光标移至行首；\r 光标移至行首，但不换行；\t 插入tab；\v 与\f相同；\ 插入\字符；\nnn 插入nnn（八进制）所代表的ASCII字符； $echo -e “a\bdddd">
+<meta name="twitter:description" content="echo -e 处理特殊字符">
   
     <link rel="alternative" href="/atom.xml" title="随心所欲" type="application/atom+xml">
   
@@ -174,8 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>echo -e 处理特殊字符</p>
-<p>若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：<br>\a 发出警告声；<br>\b 删除前一个字符；<br>\c 最后不加上换行符号；<br>\f 换行但光标仍旧停留在原来的位置；<br>\n 换行且光标移至行首；<br>\r 光标移至行首，但不换行；<br>\t 插入tab；<br>\v 与\f相同；<br>\ 插入\字符；<br>\nnn 插入nnn（八进制）所代表的ASCII字符；</p>
+        <p>echo -e 处理特殊字符<br><a id="more"></a><br>若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：<br>\a 发出警告声；<br>\b 删除前一个字符；<br>\c 最后不加上换行符号；<br>\f 换行但光标仍旧停留在原来的位置；<br>\n 换行且光标移至行首；<br>\r 光标移至行首，但不换行；<br>\t 插入tab；<br>\v 与\f相同；<br>\ 插入\字符；<br>\nnn 插入nnn（八进制）所代表的ASCII字符；</p>
 <p>$echo -e “a\bdddd”<br>dddd</p>
 <p>$echo -e “a\adddd” //输出同时会发出报警声音<br>adddd</p>
 <p>$echo -e “a\ndddd” //自动换行<br>a<br>dddd</p>

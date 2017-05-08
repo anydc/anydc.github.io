@@ -171,39 +171,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>shell中&amp;&amp;和||的使用方法<br>&amp;&amp;运算符:</p>
-<pre><code>command1  &amp;&amp; command2
-</code></pre><p>&amp;&amp;左边的命令（命令1）返回真(即返回0，成功被执行）后，&amp;&amp;右边的命令（命令2）才能够被执行；换句话说，“如果这个命令执行成功&amp;&amp;那么执行这个命令”。<br>语法格式如下：</p>
-<pre><code>command1 &amp;&amp; command2 [&amp;&amp; command3 ...]
-</code></pre><p>1 命令之间使用 &amp;&amp; 连接，实现逻辑与的功能。<br>2 只有在 &amp;&amp; 左边的命令返回真（命令返回值 $? == 0），&amp;&amp; 右边的命令才会被执行。<br>3 只要有一个命令返回假（命令返回值 $? == 1），后面的命令就不会被执行。</p>
-<p>示例 1</p>
-<pre><code>malihou@ubuntu:~$ cp ~/Desktop/1.txt ~/1.txt &amp;&amp; rm ~/Desktop/1.txt &amp;&amp; echo &quot;success&quot;
-</code></pre><p>示例 1 中的命令首先从 ~/Desktop 目录复制 1.txt 文件到 ~ 目录；执行成功后，使用 rm 删除源文件；如果删除成功则输出提示信息。</p>
-<p>||运算符:</p>
-<pre><code>command1 || command2
-</code></pre><p>||则与&amp;&amp;相反。如果||左边的命令（命令1）未执行成功，那么就执行||右边的命令（命令2）；或者换句话说，“如果这个命令执行失败了||那么就执行这个命令。<br>1 命令之间使用 || 连接，实现逻辑或的功能。<br>2 只有在 || 左边的命令返回假（命令返回值 $? == 1），|| 右边的命令才会被执行。这和 c 语言中的逻辑或语法功能相同，即实现短路逻辑或操作。<br>3 只要有一个命令返回真（命令返回值 $? == 0），后面的命令就不会被执行。</p>
-<p>示例 2</p>
-<pre><code>malihou@ubuntu:~$ rm ~/Desktop/1.txt || echo &quot;fail&quot;
-</code></pre><p>在示例 2 中，如果 ~/Desktop 目录下不存在文件 1.txt，将输出提示信息。</p>
-<p>示例 3</p>
-<pre><code>malihou@ubuntu:~$ rm ~/Desktop/1.txt &amp;&amp; echo &quot;success&quot; || echo &quot;fail&quot;
-</code></pre><p>在示例 3 中，如果 ~/Desktop 目录下存在文件 1.txt，将输出 success 提示信息；否则输出 fail 提示信息。</p>
-<p>如果希望把几个命令合在一起执行， s h e l l提供了两种方法。既可以在当前s h e l l也可以在子s h e l l中执行一组命令。</p>
-<p>()运算符:<br>为了在当前shell中执行一组命令，可以用命令分隔符(即”,”)隔开每一个命令，并把所有的命令用圆括号()括起来。<br>它的一般形式为：<br>        ( 命令；命令；命令… )</p>
-<p>1 一条命令需要独占一个物理行，如果需要将多条命令放在同一行，命令之间使用命令分隔符（;）分隔。执行的效果等同于多个独立的命令单独执行的效果。<br>2 () 表示在当前 shell 中将多个命令作为一个整体执行。需要注意的是，使用 () 括起来的命令在执行前面都不会切换当前工作目录，也就是说命令组合都是在当前工作目录下被执行的，尽管命令中有切换目录的命令。<br>3 命令组合常和命令执行控制结合起来使用。</p>
-<p>示例 4</p>
-<pre><code>malihou@ubuntu:~$ rm ~/Desktop/1.txt || (cd ~/Desktop/;ls -a;echo &quot;fail&quot;)
-</code></pre><p>在示例 4 中，如果目录 ~/Desktop 下不存在文件 1.txt，则执行命令组合。</p>
-<p>{}运算符:<br>如果使用{}来代替()，那么相应的命令将在子shell而不是当前shell中作为一个整体被执行，只有在{}中所有命令的输出作为一个整体被重定向时，其中的命令才被放到子shell中执行，否则在当前shell执行。<br>它的一般形式为：<br>      { 命令；命令；命令… }<br>（注意：在使用{}时，{}与命令之间必须使用一个空格）</p>
-<p>测试： </p>
-<pre><code>~$ A=1;echo $A;{ A=2; };echo $A 
-1 
-2 
-
-~$ A=1;echo $A;( A=2; );echo $A 
-1 
-1 
-</code></pre>
+        <p>shell中&amp;&amp;和||的使用方法<br>&amp;&amp;运算符:<br>
+        
+          <a class="article-more-a" href="/2017/05/08/shell中-和-的使用方法/#more">more >></a>
+        
       
 
       
@@ -265,8 +236,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>文件比较运算符</strong><br>-e filename  如果 filename存在，则为真  [ -e /var/log/syslog ]<br>-d filename  如果 filename为目录，则为真  [ -d /tmp/mydir ]<br>-f filename  如果 filename为常规文件，则为真  [ -f /usr/bin/grep ]<br>-L filename  如果 filename为符号链接，则为真  [ -L /usr/bin/grep ]<br>-r filename  如果 filename可读，则为真  [ -r /var/log/syslog ]<br>-w filename  如果 filename可写，则为真  [ -w /var/mytmp.txt ]<br>-x filename  如果 filename可执行，则为真  [ -L /usr/bin/grep ]<br>filename1-nt filename2  如果 filename1比 filename2新，则为真  [ /tmp/install/etc/services -nt /etc/services ]<br>filename1-ot filename2  如果 filename1比 filename2旧，则为真  [ /boot/bzImage -ot arch/i386/boot/bzImage ]<br><strong>字符串比较运算符 （请注意引号的使用，这是防止空格扰乱代码的好方法）</strong><br>-z string  如果 string长度为零，则为真  [ -z “$myvar” ]<br>-n string  如果 string长度非零，则为真  [ -n “$myvar” ]<br>string1= string2  如果 string1与 string2相同，则为真  [ “$myvar” = “one two three” ]<br>string1!= string2  如果 string1与 string2不同，则为真  [ “$myvar” != “one two three” ]<br><strong>算术比较运算符</strong><br>num1-eq num2  等于 [ 3 -eq $mynum ]<br>num1-ne num2  不等于 [ 3 -ne $mynum ]<br>num1-lt num2  小于 [ 3 -lt $mynum ]<br>num1-le num2  小于或等于 [ 3 -le $mynum ]<br>num1-gt num2  大于 [ 3 -gt $mynum ]<br>num1-ge num2  大于或等于 [ 3 -ge $mynum ]</p>
-
+        <p><strong>文件比较运算符</strong><br>-e filename  如果 filename存在，则为真  [ -e /var/log/syslog ]<br>-d filename  如果 filename为目录，则为真  [ -d /tmp/mydir ]<br>-f filename  如果 filename为常规文件，则为真  [ -f /usr/bin/grep ]<br>
+        
+          <a class="article-more-a" href="/2016/10/18/linux-shell-指令-诸如-d-f-e之类的判断表达式/#more">more >></a>
+        
       
 
       
@@ -332,10 +305,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>1、</strong>haproxy 本身提供ssl 证书，后面的web 服务器走正常的http<br><strong>2、</strong>haproxy 本身只提供代理，后面的web服务器https</p>
-<p><strong>第一种方式</strong><br>需要编译haproxy 支持ssl，编译参数：<br>    make TARGET=linux26 USE_OPENSSL=1 ADDLIB=-lz<br>    ldd haproxy | grep ssl<br>    libssl.so.10 =&gt; /usr/lib64/libssl.so.10 (0x00007fb0485e5000)<br>配置参数：<br>frontend https_frontend<br>  bind <em>:443 ssl crt /etc/ssl/certs/servername.pem<br>  mode http<br>  option httpclose<br>  option forwardfor<br>  reqadd X-Forwarded-Proto:\ https<br>  default_backend web_server<br>backend web_server<br>  mode http<br>  balance roundrobin<br>  cookie SERVERID insert indirect nocache<br>  server s1 192.168.250.47:80 check cookie s1<br>  server s2 192.168.250.49:80 check cookie s2<br> 注意：这里的pem 文件是下面两个文件合并而成：<br>  cat servername.crt servername.key |tee servername.pem<br><strong>第二种方式配置</strong><br>不需要重新编译支持ssl，简单方便。需要后面的web服务器配置好ssl 即可。<br>frontend https_frontend<br>  bind </em>:443<br>  mode tcp<br>  default_backend web_server<br>backend web_server<br>  mode tcp<br>  balance roundrobin<br>  stick-table type ip size 200k expire 30m<br>  stick on src<br>  server s1 192.168.250.47:443<br>  server s2 192.168.250.49:443</p>
-<p><strong>启动，查看进程</strong><br>haproxy]# /usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/haproxy.cfg<br>[root@node3 app]# ps -ef |grep haproxy |grep -v grep<br>root      6950     1  0 19:35 ?        00:00:00 /usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/haproxy.cfg</p>
-
+        <p><strong>1、</strong>haproxy 本身提供ssl 证书，后面的web 服务器走正常的http<br><strong>2、</strong>haproxy 本身只提供代理，后面的web服务器https<br>
+        
+          <a class="article-more-a" href="/2016/04/05/Haproxy代理ssl两种方式/#more">more >></a>
+        
       
 
       
@@ -394,14 +367,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>下载pip安装包<br><a href="https://pypi.python.org/pypi/pip#downloads" target="_blank" rel="external">https://pypi.python.org/pypi/pip#downloads</a></p>
-<p>解压后</p>
-<p>python setup.py install</p>
-<p>报错就下载安装组件<br>如缺少setuptools<br><a href="https://pypi.python.org/pypi/setuptools#downloads" target="_blank" rel="external">https://pypi.python.org/pypi/setuptools#downloads</a></p>
-<p>python setup.py build<br>python setup.py install</p>
-<p>如果还报错：<br>yum install gcc python-devel</p>
-<p>出现以下报错：RuntimeError: Compression requires the (missing) zlib module<br>我们需要在linux中安装zlib-devel包，进行支持。<br>yum install zlib-devel<br>需要对python进行重新编译安装。<br>cd python2.x 或3.x<br>make &amp; make install<br>又是漫长的编译安装过程。<br>重新安装setuptools<br>python setup.py build<br>python setup.py install</p>
-<p>pip安装提示找不到ssl模块<br>pip is configured with locations that require TLS/SSL<br>yum install openssl-devel -y<br>然后重新编译python</p>
-
+<p>解压后<br>
+        
+          <a class="article-more-a" href="/2016/02/18/安装pip/#more">more >></a>
+        
       
 
       
@@ -463,12 +432,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>echo -e 处理特殊字符</p>
-<p>若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：<br>\a 发出警告声；<br>\b 删除前一个字符；<br>\c 最后不加上换行符号；<br>\f 换行但光标仍旧停留在原来的位置；<br>\n 换行且光标移至行首；<br>\r 光标移至行首，但不换行；<br>\t 插入tab；<br>\v 与\f相同；<br>\ 插入\字符；<br>\nnn 插入nnn（八进制）所代表的ASCII字符；</p>
-<p>$echo -e “a\bdddd”<br>dddd</p>
-<p>$echo -e “a\adddd” //输出同时会发出报警声音<br>adddd</p>
-<p>$echo -e “a\ndddd” //自动换行<br>a<br>dddd</p>
-
+        <p>echo -e 处理特殊字符<br>
+        
+          <a class="article-more-a" href="/2014/11/21/linux-shell-echo-e-指令/#more">more >></a>
+        
       
 
       
@@ -531,11 +498,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>其实我就想随便写点</p>
-<p>记录一些笔记</p>
-<p>感谢朋友!</p>
-<p>如果久不更新</p>
-<p>还望大家原谅啊！</p>
-
+<p>记录一些笔记<br>
+        
+          <a class="article-more-a" href="/2012/01/28/开博第一篇/#more">more >></a>
+        
       
 
       

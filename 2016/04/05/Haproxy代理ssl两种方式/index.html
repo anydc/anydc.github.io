@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="//anydc.com">
   <title>Haproxy代理ssl两种方式 | 随心所欲</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、haproxy 本身提供ssl 证书，后面的web 服务器走正常的http2、haproxy 本身只提供代理，后面的web服务器https 第一种方式需要编译haproxy 支持ssl，编译参数：    make TARGET=linux26 USE_OPENSSL=1 ADDLIB=-lz    ldd haproxy | grep ssl    libssl.so.10 =&amp;gt; /us">
+  <meta name="description" content="1、haproxy 本身提供ssl 证书，后面的web 服务器走正常的http2、haproxy 本身只提供代理，后面的web服务器https">
 <meta name="keywords" content="Haproxy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Haproxy代理ssl两种方式">
 <meta property="og:url" content="//anydc.com/2016/04/05/Haproxy代理ssl两种方式/index.html">
 <meta property="og:site_name" content="随心所欲">
-<meta property="og:description" content="1、haproxy 本身提供ssl 证书，后面的web 服务器走正常的http2、haproxy 本身只提供代理，后面的web服务器https 第一种方式需要编译haproxy 支持ssl，编译参数：    make TARGET=linux26 USE_OPENSSL=1 ADDLIB=-lz    ldd haproxy | grep ssl    libssl.so.10 =&amp;gt; /us">
-<meta property="og:updated_time" content="2017-05-07T14:15:44.903Z">
+<meta property="og:description" content="1、haproxy 本身提供ssl 证书，后面的web 服务器走正常的http2、haproxy 本身只提供代理，后面的web服务器https">
+<meta property="og:updated_time" content="2017-05-08T07:52:18.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Haproxy代理ssl两种方式">
-<meta name="twitter:description" content="1、haproxy 本身提供ssl 证书，后面的web 服务器走正常的http2、haproxy 本身只提供代理，后面的web服务器https 第一种方式需要编译haproxy 支持ssl，编译参数：    make TARGET=linux26 USE_OPENSSL=1 ADDLIB=-lz    ldd haproxy | grep ssl    libssl.so.10 =&amp;gt; /us">
+<meta name="twitter:description" content="1、haproxy 本身提供ssl 证书，后面的web 服务器走正常的http2、haproxy 本身只提供代理，后面的web服务器https">
   
     <link rel="alternative" href="/atom.xml" title="随心所欲" type="application/atom+xml">
   
@@ -174,8 +174,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>1、</strong>haproxy 本身提供ssl 证书，后面的web 服务器走正常的http<br><strong>2、</strong>haproxy 本身只提供代理，后面的web服务器https</p>
-<p><strong>第一种方式</strong><br>需要编译haproxy 支持ssl，编译参数：<br>    make TARGET=linux26 USE_OPENSSL=1 ADDLIB=-lz<br>    ldd haproxy | grep ssl<br>    libssl.so.10 =&gt; /usr/lib64/libssl.so.10 (0x00007fb0485e5000)<br>配置参数：<br>frontend https_frontend<br>  bind <em>:443 ssl crt /etc/ssl/certs/servername.pem<br>  mode http<br>  option httpclose<br>  option forwardfor<br>  reqadd X-Forwarded-Proto:\ https<br>  default_backend web_server<br>backend web_server<br>  mode http<br>  balance roundrobin<br>  cookie SERVERID insert indirect nocache<br>  server s1 192.168.250.47:80 check cookie s1<br>  server s2 192.168.250.49:80 check cookie s2<br> 注意：这里的pem 文件是下面两个文件合并而成：<br>  cat servername.crt servername.key |tee servername.pem<br><strong>第二种方式配置</strong><br>不需要重新编译支持ssl，简单方便。需要后面的web服务器配置好ssl 即可。<br>frontend https_frontend<br>  bind </em>:443<br>  mode tcp<br>  default_backend web_server<br>backend web_server<br>  mode tcp<br>  balance roundrobin<br>  stick-table type ip size 200k expire 30m<br>  stick on src<br>  server s1 192.168.250.47:443<br>  server s2 192.168.250.49:443</p>
+        <p><strong>1、</strong>haproxy 本身提供ssl 证书，后面的web 服务器走正常的http<br><strong>2、</strong>haproxy 本身只提供代理，后面的web服务器https<br><a id="more"></a><br><strong>第一种方式</strong><br>需要编译haproxy 支持ssl，编译参数：<br>    make TARGET=linux26 USE_OPENSSL=1 ADDLIB=-lz<br>    ldd haproxy | grep ssl<br>    libssl.so.10 =&gt; /usr/lib64/libssl.so.10 (0x00007fb0485e5000)<br>配置参数：<br>frontend https_frontend<br>  bind <em>:443 ssl crt /etc/ssl/certs/servername.pem<br>  mode http<br>  option httpclose<br>  option forwardfor<br>  reqadd X-Forwarded-Proto:\ https<br>  default_backend web_server<br>backend web_server<br>  mode http<br>  balance roundrobin<br>  cookie SERVERID insert indirect nocache<br>  server s1 192.168.250.47:80 check cookie s1<br>  server s2 192.168.250.49:80 check cookie s2<br> 注意：这里的pem 文件是下面两个文件合并而成：<br>  cat servername.crt servername.key |tee servername.pem<br><strong>第二种方式配置</strong><br>不需要重新编译支持ssl，简单方便。需要后面的web服务器配置好ssl 即可。<br>frontend https_frontend<br>  bind </em>:443<br>  mode tcp<br>  default_backend web_server<br>backend web_server<br>  mode tcp<br>  balance roundrobin<br>  stick-table type ip size 200k expire 30m<br>  stick on src<br>  server s1 192.168.250.47:443<br>  server s2 192.168.250.49:443</p>
 <p><strong>启动，查看进程</strong><br>haproxy]# /usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/haproxy.cfg<br>[root@node3 app]# ps -ef |grep haproxy |grep -v grep<br>root      6950     1  0 19:35 ?        00:00:00 /usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/haproxy.cfg</p>
 
       
