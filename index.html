@@ -443,6 +443,73 @@
 
 
   
+    <article id="post-linux-shell-echo-e-指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/21/linux-shell-echo-e-指令/">linux shell echo -e 指令</a>
+    </h1>
+  
+
+        
+        <a href="/2014/11/21/linux-shell-echo-e-指令/" class="archive-article-date">
+  	<time datetime="2014-11-21T03:33:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-11-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>echo -e 处理特殊字符</p>
+<p>若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：<br>\a 发出警告声；<br>\b 删除前一个字符；<br>\c 最后不加上换行符号；<br>\f 换行但光标仍旧停留在原来的位置；<br>\n 换行且光标移至行首；<br>\r 光标移至行首，但不换行；<br>\t 插入tab；<br>\v 与\f相同；<br>\ 插入\字符；<br>\nnn 插入nnn（八进制）所代表的ASCII字符；</p>
+<p>$echo -e “a\bdddd”<br>dddd</p>
+<p>$echo -e “a\adddd” //输出同时会发出报警声音<br>adddd</p>
+<p>$echo -e “a\ndddd” //自动换行<br>a<br>dddd</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2014/11/21/linux-shell-echo-e-指令/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-开博第一篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -590,6 +657,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Haproxy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
@@ -599,10 +670,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">string</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Haproxy</a>
               </li>
              
               <li class="article-tag-list-item">
