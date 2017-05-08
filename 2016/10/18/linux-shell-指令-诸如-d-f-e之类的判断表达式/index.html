@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="//anydc.com">
-  <title>安装pip | 随心所欲</title>
+  <title>linux shell 指令 诸如-d, -f, -e之类的判断表达式 | 随心所欲</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="下载pip安装包https://pypi.python.org/pypi/pip#downloads 解压后 python setup.py install 报错就下载安装组件如缺少setuptoolshttps://pypi.python.org/pypi/setuptools#downloads python setup.py buildpython setup.py install 如果还报">
-<meta name="keywords" content="python,pip">
+  <meta name="description" content="文件比较运算符-e filename  如果 filename存在，则为真  [ -e /var/log/syslog ]-d filename  如果 filename为目录，则为真  [ -d /tmp/mydir ]-f filename  如果 filename为常规文件，则为真  [ -f /usr/bin/grep ]-L filename  如果 filename为符号链接，则为真">
+<meta name="keywords" content="linux,shell,string">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安装pip">
-<meta property="og:url" content="//anydc.com/2016/02/18/安装pip/index.html">
+<meta property="og:title" content="linux shell 指令 诸如-d, -f, -e之类的判断表达式">
+<meta property="og:url" content="//anydc.com/2016/10/18/linux-shell-指令-诸如-d-f-e之类的判断表达式/index.html">
 <meta property="og:site_name" content="随心所欲">
-<meta property="og:description" content="下载pip安装包https://pypi.python.org/pypi/pip#downloads 解压后 python setup.py install 报错就下载安装组件如缺少setuptoolshttps://pypi.python.org/pypi/setuptools#downloads python setup.py buildpython setup.py install 如果还报">
-<meta property="og:updated_time" content="2017-05-08T02:21:48.974Z">
+<meta property="og:description" content="文件比较运算符-e filename  如果 filename存在，则为真  [ -e /var/log/syslog ]-d filename  如果 filename为目录，则为真  [ -d /tmp/mydir ]-f filename  如果 filename为常规文件，则为真  [ -f /usr/bin/grep ]-L filename  如果 filename为符号链接，则为真">
+<meta property="og:updated_time" content="2017-05-08T03:13:02.896Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="安装pip">
-<meta name="twitter:description" content="下载pip安装包https://pypi.python.org/pypi/pip#downloads 解压后 python setup.py install 报错就下载安装组件如缺少setuptoolshttps://pypi.python.org/pypi/setuptools#downloads python setup.py buildpython setup.py install 如果还报">
+<meta name="twitter:title" content="linux shell 指令 诸如-d, -f, -e之类的判断表达式">
+<meta name="twitter:description" content="文件比较运算符-e filename  如果 filename存在，则为真  [ -e /var/log/syslog ]-d filename  如果 filename为目录，则为真  [ -d /tmp/mydir ]-f filename  如果 filename为常规文件，则为真  [ -f /usr/bin/grep ]-L filename  如果 filename为符号链接，则为真">
   
     <link rel="alternative" href="/atom.xml" title="随心所欲" type="application/atom+xml">
   
@@ -154,34 +154,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-安装pip" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-linux-shell-指令-诸如-d-f-e之类的判断表达式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      安装pip
+      linux shell 指令 诸如-d, -f, -e之类的判断表达式
     </h1>
   
 
         
-        <a href="/2016/02/18/安装pip/" class="archive-article-date">
-  	<time datetime="2016-02-18T02:05:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-18</time>
+        <a href="/2016/10/18/linux-shell-指令-诸如-d-f-e之类的判断表达式/" class="archive-article-date">
+  	<time datetime="2016-10-18T03:10:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>下载pip安装包<br><a href="https://pypi.python.org/pypi/pip#downloads" target="_blank" rel="external">https://pypi.python.org/pypi/pip#downloads</a></p>
-<p>解压后</p>
-<p>python setup.py install</p>
-<p>报错就下载安装组件<br>如缺少setuptools<br><a href="https://pypi.python.org/pypi/setuptools#downloads" target="_blank" rel="external">https://pypi.python.org/pypi/setuptools#downloads</a></p>
-<p>python setup.py build<br>python setup.py install</p>
-<p>如果还报错：<br>yum install gcc python-devel</p>
-<p>出现以下报错：RuntimeError: Compression requires the (missing) zlib module<br>我们需要在linux中安装zlib-devel包，进行支持。<br>yum install zlib-devel<br>需要对python进行重新编译安装。<br>cd python2.x 或3.x<br>make &amp; make install<br>又是漫长的编译安装过程。<br>重新安装setuptools<br>python setup.py build<br>python setup.py install</p>
-<p>pip安装提示找不到ssl模块<br>pip is configured with locations that require TLS/SSL<br>yum install openssl-devel -y<br>然后重新编译python</p>
+        <p><strong>文件比较运算符</strong><br>-e filename  如果 filename存在，则为真  [ -e /var/log/syslog ]<br>-d filename  如果 filename为目录，则为真  [ -d /tmp/mydir ]<br>-f filename  如果 filename为常规文件，则为真  [ -f /usr/bin/grep ]<br>-L filename  如果 filename为符号链接，则为真  [ -L /usr/bin/grep ]<br>-r filename  如果 filename可读，则为真  [ -r /var/log/syslog ]<br>-w filename  如果 filename可写，则为真  [ -w /var/mytmp.txt ]<br>-x filename  如果 filename可执行，则为真  [ -L /usr/bin/grep ]<br>filename1-nt filename2  如果 filename1比 filename2新，则为真  [ /tmp/install/etc/services -nt /etc/services ]<br>filename1-ot filename2  如果 filename1比 filename2旧，则为真  [ /boot/bzImage -ot arch/i386/boot/bzImage ]<br><strong>字符串比较运算符 （请注意引号的使用，这是防止空格扰乱代码的好方法）</strong><br>-z string  如果 string长度为零，则为真  [ -z “$myvar” ]<br>-n string  如果 string长度非零，则为真  [ -n “$myvar” ]<br>string1= string2  如果 string1与 string2相同，则为真  [ “$myvar” = “one two three” ]<br>string1!= string2  如果 string1与 string2不同，则为真  [ “$myvar” != “one two three” ]<br><strong>算术比较运算符</strong><br>num1-eq num2  等于 [ 3 -eq $mynum ]<br>num1-ne num2  不等于 [ 3 -ne $mynum ]<br>num1-lt num2  小于 [ 3 -lt $mynum ]<br>num1-le num2  小于或等于 [ 3 -le $mynum ]<br>num1-gt num2  大于 [ 3 -gt $mynum ]<br>num1-ge num2  大于或等于 [ 3 -ge $mynum ]</p>
 
       
 
@@ -226,11 +219,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">pip</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">shell</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">string</a>
         		</li>
       		
 		</ul>
@@ -286,7 +283,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://anydc.com/2016/02/18/安装pip/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://anydc.com/2016/10/18/linux-shell-指令-诸如-d-f-e之类的判断表达式/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -300,18 +297,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/04/05/Haproxy代理ssl两种方式/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/05/08/shell中-和-的使用方法/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Haproxy代理ssl两种方式
+          shell中&amp;&amp;和||的使用方法
         
       </div>
     </a>
   
   
-    <a href="/2012/01/28/开博第一篇/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">开博第一篇</div>
+    <a href="/2016/04/05/Haproxy代理ssl两种方式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Haproxy代理ssl两种方式</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -326,7 +323,7 @@
   
 
   
-  <div id="SOHUCS" sid="安装pip" ></div> 
+  <div id="SOHUCS" sid="linux-shell-指令-诸如-d-f-e之类的判断表达式" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cysYWjLO7"; 
